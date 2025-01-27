@@ -19,9 +19,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     <div className={styles.root}>
       <div className={styles.image}>
         {(isNewlyAdded || isDiscounted) && (
-          <div className={classNames("d-inline-flex gap-2 position-absolute left-0 top-0", styles.tags)}>
-            {isDiscounted && <small className="bg-danger text-white px-2 py-1 z-2">-{discountPercent}%</small>}
-            {isNewlyAdded && <small className="bg-primary text-white px-2 py-1 z-2">New</small>}
+          <div className={classNames("d-inline-flex gap-2 position-absolute left-0 top-0 z-2", styles.tags)}>
+            {isDiscounted && <small className="bg-danger text-white px-2 py-1">-{discountPercent}%</small>}
+            {isNewlyAdded && <small className="bg-primary text-white px-2 py-1">New</small>}
           </div>
         )}
         <Image src={`/images/product/${imageUrl}`} width={600} height={600} alt={name} />

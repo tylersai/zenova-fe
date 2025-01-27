@@ -2,41 +2,12 @@ body {
   --bs-body-font-family: var(--font-work-sans);
 }
 
+input,
+select {
+  box-shadow: none !important;
+}
+
 img {
   max-width: 100%;
   height: auto;
-}
-
-.section-title {
-  text-align: center;
-  margin-bottom: 40px;
-  padding: 0px 20px;
-  position: relative;
-  z-index: 5;
-
-  h2 {
-    font-size: 30px;
-    line-height: 35px;
-    text-transform: capitalize;
-    font-weight: 600;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-    position: relative;
-    &::before {
-      position: absolute;
-      left: 50%;
-      bottom: 0;
-      content: "";
-      background-color: var(--bs-primary);
-      height: 3px;
-      width: 50px;
-      margin-left: -25px;
-      border-radius: 2px;
-    }
-  }
-
-  p {
-    margin: 0 auto;
-    max-width: 800px;
-  }
 }

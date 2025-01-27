@@ -13,7 +13,7 @@ export default async function Home() {
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <div className="section-title">
+              <div className={styles.sectionTitle}>
                 <h2>Trending Products</h2>
                 <p>
                   There are many variations of passages of Lorem Ipsum available, but the majority have suffered
