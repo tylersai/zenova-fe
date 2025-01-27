@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Product } from "@/types/product";
 import Link from "next/link";
 import classNames from "classnames";
+import AddToCart from "./AddToCart";
 
 export type ProductCardProps = {
   product: Product;
@@ -58,9 +59,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               </span>
             )}
           </div>
-          <button className="btn btn-sm btn-primary">
-            <i className="bi bi-cart-plus"></i> Add to Cart
-          </button>
+          <AddToCart className="btn-sm" product={product} quantity={1} />
         </div>
       </div>
     </div>

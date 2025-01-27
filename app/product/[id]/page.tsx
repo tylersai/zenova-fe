@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import classNames from "classnames";
 import Link from "next/link";
+import ProductActions from "@/components/ProductActions";
 
 const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
@@ -84,41 +85,7 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
 
                 <p className="info-text mb-5">{description}</p>
 
-                <div className="row mb-4">
-                  <div className="col-lg-4 col-md-4 col-12">
-                    <div className="d-flex align-items-center">
-                      <label htmlFor="quantity" className="me-4 me-md-3">
-                        Quantity
-                      </label>
-                      <select id="quantity" className="form-select form-select-sm">
-                        {[...Array(5).keys()].map((idx) => (
-                          <option key={idx + 1} value={idx + 1}>
-                            {idx + 1}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bottom-content">
-                  <div className="row align-items-end">
-                    <div className="col-lg-4 col-md-4 col-12 mb-3">
-                      <div className="button cart-button">
-                        <button className="btn w-100 btn-primary">
-                          <i className="bi bi-cart-plus"></i> Add to Cart
-                        </button>
-                      </div>
-                    </div>
-                    <div className="col-lg-4 col-md-4 col-12 mb-3">
-                      <div className="wish-button">
-                        <button className="btn w-100 btn-outline-primary">
-                          <i className="bi bi-heart"></i> Add to Wishlist
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <ProductActions product={product} />
               </div>
             </div>
           </div>
