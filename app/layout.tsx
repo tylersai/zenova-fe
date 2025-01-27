@@ -4,6 +4,7 @@ import "bootstrap-icons/font/bootstrap-icons.min.css";
 import "./styles/bootstrap-customized.scss";
 import "./styles/globals.scss";
 import Header from "@/components/Header";
+import { ReduxProvider } from "@/redux/provider";
 
 const workSans = Work_Sans({
   variable: "--font-work-sans",
@@ -24,8 +25,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={workSans.variable}>
-        <Header />
-        {children}
+        <ReduxProvider>
+          <Header />
+          {children}
+        </ReduxProvider>
       </body>
     </html>
   );

@@ -9,6 +9,6 @@ export type Product = {
   stock: number;
   rating: number;
   isNewlyAdded: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 };
