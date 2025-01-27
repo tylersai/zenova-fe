@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Work_Sans } from "next/font/google";
 import "bootstrap-icons/font/bootstrap-icons.min.css";
-import "./bootstrap-customized.scss";
-import "./globals.scss";
+import "./styles/bootstrap-customized.scss";
+import "./styles/globals.scss";
 
 const workSans = Work_Sans({
   variable: "--font-work-sans",
   subsets: ["latin"],
+  fallback: ["system-ui", "-apple-system", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
 });
 
 export const metadata: Metadata = {
