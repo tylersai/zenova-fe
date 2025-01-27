@@ -17,7 +17,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <div className={styles.root}>
-      <div className={styles.image}>
+      <Link href={`/product/${id}`} className={styles.image}>
         {(isNewlyAdded || isDiscounted) && (
           <div className={classNames("d-inline-flex gap-2 position-absolute left-0 top-0 z-2", styles.tags)}>
             {isDiscounted && <small className="bg-danger text-white px-2 py-1">-{discountPercent}%</small>}
@@ -25,7 +25,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
         )}
         <Image src={`/images/product/${imageUrl}`} width={600} height={600} alt={name} />
-      </div>
+      </Link>
       <div className={styles.info}>
         <span className={styles.category}>{category}</span>
         <h4 className="mb-1">

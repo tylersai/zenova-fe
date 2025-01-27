@@ -15,6 +15,7 @@
 }
 
 .image {
+  display: block;
   overflow: hidden;
   position: relative;
   & > img {
@@ -23,6 +24,7 @@
   }
 
   .tags {
+    text-decoration: none;
     small {
       border-radius: 2px;
     }
