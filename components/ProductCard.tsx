@@ -10,7 +10,7 @@ export type ProductCardProps = {
 };
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const { id, name, price, category, imageUrl, isNewlyAdded, originalPrice } = product;
+  const { id, name, price, category, imageUrl, isNewlyAdded, originalPrice, rating } = product;
 
   const isDiscounted = price < originalPrice;
   const discountPercent = (((originalPrice - price) * 100) / originalPrice).toFixed(0);
@@ -33,15 +33,23 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             {name}
           </Link>
         </h4>
-        <small className="d-flex align-items-center gap-1 mb-3 opacity-75">
-          <i className="bi bi-star-fill text-warning"></i>
-          <i className="bi bi-star-fill text-warning"></i>
-          <i className="bi bi-star-fill text-warning"></i>
-          <i className="bi bi-star-half text-warning"></i>
-          <i className="bi bi-star text-warning"></i>
-          <span className="ms-1 text-secondary">(256)</span>
+        <small className="d-flex align-items-center gap-1 opacity-75">
+          {[...Array(5).keys()].map((idx) =>
+            idx < rating ? (
+              <i key={idx} className="bi bi-star-fill text-warning"></i>
+            ) : (
+              <i key={idx} className="bi bi-star text-secondary opacity-75"></i>
+            )
+          )}
+          {rating > 0 ? (
+            <span className="ms-1 text-secondary">
+              ({(Math.floor(Math.random() * 2500) + 1).toLocaleString("en-US", { useGrouping: true })})
+            </span>
+          ) : (
+            <span className="ms-1 text-secondary opacity-75">(No Reviews)</span>
+          )}
         </small>
-        <div className="d-flex justify-content-between align-items-center">
+        <div className="d-flex justify-content-between align-items-center mt-3">
           <div className={styles.price}>
             <span>${price}</span>
             {isDiscounted && (
