@@ -20,7 +20,7 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   const isDiscounted = price < originalPrice;
   return (
-    <div className={styles.root}>
+    <div className={classNames(styles.root, "pt-3 pt-md-4")}>
       <div className="container">
         <nav className="breadcrumb-nav bg-white px-2 px-sm-3 px-md-4 py-3 mb-3 mb-md-4" aria-label="breadcrumb">
           <ol className="breadcrumb mb-0 flex-nowrap">

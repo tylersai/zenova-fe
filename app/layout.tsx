@@ -3,6 +3,7 @@ import { Work_Sans } from "next/font/google";
 import "bootstrap-icons/font/bootstrap-icons.min.css";
 import "./styles/bootstrap-customized.scss";
 import "./styles/globals.scss";
+import Header from "@/components/Header";
 
 const workSans = Work_Sans({
   variable: "--font-work-sans",
@@ -22,7 +23,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={workSans.variable}>{children}</body>
+      <body className={workSans.variable}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
