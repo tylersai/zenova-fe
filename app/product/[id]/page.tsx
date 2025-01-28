@@ -31,7 +31,7 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
               </Link>
             </li>
             <li className="breadcrumb-item text-nowrap overflow-hidden">
-              <a href="#">{category}</a>
+              <Link href={`/category/${category.toLowerCase()}`}>{category}</Link>
             </li>
             <li className="breadcrumb-item active text-nowrap overflow-hidden" aria-current="page">
               {name}
