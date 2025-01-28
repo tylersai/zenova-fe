@@ -1,0 +1,10 @@
+.root {
+  background-color: var(--bs-light);
+  min-height: calc(100svh - 71px);
+}
+
+.cartListTitle {
+  p {
+    margin-bottom: 0;
+  }
+}

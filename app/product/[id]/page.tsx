@@ -39,7 +39,7 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
           </ol>
         </nav>
 
-        <div className={styles.topArea}>
+        <div className={classNames(styles.topArea, "box")}>
           <div className="row align-items-center">
             <div className="col-lg-6 col-md-12 col-12">
               <div className="product-images">
