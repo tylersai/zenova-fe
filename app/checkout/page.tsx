@@ -5,6 +5,7 @@ import classNames from "classnames";
 import { useAppSelector } from "@/redux/hooks";
 import { redirect } from "next/navigation";
 import CheckoutBox from "@/components/CheckoutBox";
+import CheckoutSummary from "@/components/CheckoutSummary";
 
 const CartPage = () => {
   const { items } = useAppSelector((state) => state.cart);
@@ -127,7 +128,9 @@ const CartPage = () => {
               </div>
             </CheckoutBox>
           </div>
-          <div className="col-12 col-md-5 col-lg-4 mb-3 mb-md-4"></div>
+          <div className="col-12 col-md-5 col-lg-4 mb-3 mb-md-4">
+            <CheckoutSummary />
+          </div>
         </div>
       </div>
     </div>
