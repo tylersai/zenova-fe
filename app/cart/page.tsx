@@ -26,17 +26,17 @@ const CartPage = () => {
               <div className="box">
                 <div className={classNames(styles.cartListTitle, "px-2 px-md-3 py-2 py-md-3")}>
                   <div className="row">
-                    <div className="col-lg-2 col-md-2 col-12"></div>
-                    <div className="col-lg-5 col-md-4 col-12">
+                    <div className="col-2"></div>
+                    <div className="col-5">
                       <p>Product Name</p>
                     </div>
-                    <div className="col-lg-2 col-md-2 col-12">
-                      <p>Quantity</p>
+                    <div className="col-1 col-lg-2">
+                      <p>Qty</p>
                     </div>
-                    <div className="col-lg-2 col-md-2 col-12">
+                    <div className="col-2">
                       <p>Price</p>
                     </div>
-                    <div className="col-lg-1 col-md-2 col-12"></div>
+                    <div className="col-2 col-lg-1"></div>
                   </div>
                 </div>
                 {items.map((item) => (

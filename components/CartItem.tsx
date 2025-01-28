@@ -20,35 +20,35 @@ const CartItem: React.FC<CartItemProps> = ({ item, remove }) => {
   return (
     <div className={classNames(styles.root, "py-2 py-md-3 px-2 px-md-3")}>
       <div className="row align-items-center">
-        <div className="col-lg-2 col-md-2 col-12">
+        <div className="col-2">
           <Link href={`/product/${id}`}>
             <Image src={`/images/product/${imageUrl}`} width={200} height={200} alt={name} />
           </Link>
         </div>
-        <div className="col-lg-5 col-md-4 col-12">
-          <h5 className="product-name">
+        <div className="col-5">
+          <h5 className="product-name mb-0 mb-md-1 mb-lg-2">
             <Link href={`/product/${id}`} className={styles.productName}>
               {name}
             </Link>
           </h5>
-          <small className="m-0 mt-1 text-nowrap">
+          <small className="m-0 text-nowrap">
             Color: <span className="text-secondary">Space Gray</span>
           </small>
         </div>
-        <div className="col-lg-2 col-md-2 col-12">
+        <div className="col-1 col-lg-2">
           <p>{quantity}</p>
         </div>
-        <div className="col-lg-2 col-md-2 col-12">
-          <p>
-            ${price * quantity}
+        <div className="col-2">
+          <p className="d-flex flex-wrap align-items-center gap-0 gap-md-1">
+            <span>${price * quantity}</span>
             {isDiscounted && (
               <small className="text-secondary text-decoration-line-through opacity-75">
-                &nbsp;${originalPrice * quantity}
+                ${originalPrice * quantity}
               </small>
             )}
           </p>
         </div>
-        <div className="col-lg-1 col-md-2 col-12">
+        <div className="col-2 col-lg-1">
           <button className={styles.removeItem} onClick={remove}>
             <i className="bi bi-trash"></i>
           </button>
