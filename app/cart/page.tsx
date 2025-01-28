@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Empty from "@/components/Empty";
 import { removeFromCart } from "@/redux/cartSlice";
 import CartItemComponent from "@/components/CartItem";
+import CartSummary from "@/components/CartSummary";
 
 const CartPage = () => {
   const { items } = useAppSelector((state) => state.cart);
@@ -43,7 +44,9 @@ const CartPage = () => {
                 ))}
               </div>
             </div>
-            <div className="col-12 col-md-5 col-lg-4 mb-3 mb-md-4"></div>
+            <div className="col-12 col-md-5 col-lg-4 mb-3 mb-md-4">
+              <CartSummary />
+            </div>
           </div>
         ) : (
           <Empty>

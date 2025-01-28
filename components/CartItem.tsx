@@ -13,7 +13,9 @@ type CartItemProps = {
 };
 
 const CartItem: React.FC<CartItemProps> = ({ item, remove }) => {
-  const { id, name, imageUrl, quantity, price } = item;
+  const { id, name, imageUrl, quantity, price, originalPrice } = item;
+
+  const isDiscounted = price < originalPrice;
 
   return (
     <div className={classNames(styles.root, "py-2 py-md-3 px-2 px-md-3")}>
@@ -37,7 +39,14 @@ const CartItem: React.FC<CartItemProps> = ({ item, remove }) => {
           <p>{quantity}</p>
         </div>
         <div className="col-lg-2 col-md-2 col-12">
-          <p>${price * quantity}</p>
+          <p>
+            ${price * quantity}
+            {isDiscounted && (
+              <small className="text-secondary text-decoration-line-through opacity-75">
+                &nbsp;${originalPrice * quantity}
+              </small>
+            )}
+          </p>
         </div>
         <div className="col-lg-1 col-md-2 col-12">
           <button className={styles.removeItem} onClick={remove}>
