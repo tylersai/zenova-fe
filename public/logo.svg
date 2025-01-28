@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100">
+  <!-- Background circle representing zen/harmony -->
+  <circle cx="50" cy="50" r="40" fill="#4A90E2" opacity="0.1"/>
+  
+  <!-- Stylized 'Z' that flows into infinity symbol -->
+  <path d="M30 20 L70 20 L30 80 L70 80" 
+        stroke="#0d6efd" 
+        stroke-width="6" 
+        fill="none"
+        stroke-linecap="round"/>
+  
+  <!-- Company name -->
+  <text x="100" y="65" 
+        font-family="Arial, sans-serif" 
+        font-size="42" 
+        font-weight="bold" 
+        fill="#2C3E50">
+    ZENOVA
+  </text>
+  
+  <!-- Decorative dot above 'O' suggesting digital/tech -->
+  <circle cx="202" cy="24" r="6" fill="#4A90E2"/>
+  
+  <!-- Underline suggesting forward movement -->
+  <path d="M100 75 L270 75" 
+        stroke="#4A90E2" 
+        stroke-width="2" 
+        stroke-dasharray="2,2"/>
+</svg>
