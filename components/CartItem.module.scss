@@ -1,0 +1,40 @@
+.root {
+  border-top: 1px solid #eee;
+  p {
+    margin-bottom: 0;
+  }
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.productName {
+  font-size: 16px;
+  color: var(--bs-body-color);
+  transition: all 0.4s ease;
+  text-decoration: none;
+  &:hover {
+    color: var(--bs-primary);
+  }
+}
+
+.removeItem {
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid #eee;
+  color: #555;
+  font-size: 18px;
+  text-align: center;
+  position: relative;
+  text-decoration: none;
+  transition: all 0.4s ease;
+
+  &:hover {
+    color: #fff;
+    background-color: var(--bs-danger);
+    border-color: transparent;
+  }
+}
