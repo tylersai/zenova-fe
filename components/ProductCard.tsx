@@ -17,7 +17,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const discountPercent = (((originalPrice - price) * 100) / originalPrice).toFixed(0);
 
   return (
-    <div className={styles.root}>
+    <div className={classNames(styles.root, "mt-3 mt-md-4")}>
       <Link href={`/product/${id}`} className={styles.image}>
         {(isNewlyAdded || isDiscounted) && (
           <div className={classNames("d-inline-flex gap-2 position-absolute left-0 top-0 z-2", styles.tags)}>

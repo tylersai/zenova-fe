@@ -1,0 +1,9 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  & > section:first-child {
+    min-height: calc(100svh - 71px);
+    background-color: #f9f9f9;
+  }
+}

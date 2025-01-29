@@ -9,7 +9,11 @@ const AuthMenu: React.FC = () => {
   const { data: profile } = useProfile();
 
   if (!profile) {
-    return <Link href="/login">Login</Link>;
+    return (
+      <Link href="/login" className="me-1 link-dark" style={{ textUnderlineOffset: "3px" }}>
+        Login
+      </Link>
+    );
   }
 
   return (

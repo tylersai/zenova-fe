@@ -2,6 +2,7 @@ export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "";
 
 export const ApiUrl = {
   PRODUCT: `${BASE_URL}/product`,
+  SEARCH_PRODUCT: `${BASE_URL}/product/search`,
   CATEGORY: `${BASE_URL}/category`,
   ORDER: `${BASE_URL}/order`,
   MY_ORDERS: `${BASE_URL}/order/my-orders`,
