@@ -21,8 +21,9 @@ const AddToCart: React.FC<AddToCartProps> = ({ className, product, quantity = 1 
   };
 
   return (
-    <button className={classNames("btn btn-primary", className)} onClick={handleAddToCart}>
-      <i className="bi bi-cart-plus"></i> Add to Cart
+    <button className={classNames("btn btn-primary text-nowrap add-to-cart", className)} onClick={handleAddToCart}>
+      <i className="bi bi-cart-plus atc-icon"></i>
+      <span className="atc-text">&nbsp;Add to Cart</span>
     </button>
   );
 };

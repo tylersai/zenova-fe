@@ -59,3 +59,28 @@ img {
     max-width: 800px;
   }
 }
+
+@media (max-width: 575.98px) {
+  .product-list.row {
+    margin-left: 0;
+    .col-6 {
+      padding-left: 0;
+      .product-card {
+        margin-top: calc(0.6 * var(--bs-gutter-x)) !important;
+        .product-info {
+          padding: 8px;
+          .product-title {
+            white-space: nowrap;
+            font-weight: 500;
+            max-width: calc(100% - 8px);
+            text-overflow: hidden;
+          }
+          .price {
+            font-size: 16px;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}

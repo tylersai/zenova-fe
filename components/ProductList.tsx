@@ -10,9 +10,9 @@ type ProductListProps = {
 const ProductList: React.FC<ProductListProps> = ({ products }) => {
   if (products.length > 0) {
     return (
-      <div className="row">
+      <div className="row product-list">
         {products.map((product) => (
-          <div key={product.id} className="col-lg-3 col-md-6 col-12">
+          <div key={product.id} className="col-lg-3 col-6">
             <ProductCard product={product} />
           </div>
         ))}

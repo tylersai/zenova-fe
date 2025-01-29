@@ -17,7 +17,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const discountPercent = (((originalPrice - price) * 100) / originalPrice).toFixed(0);
 
   return (
-    <div className={classNames(styles.root, "mt-3 mt-md-4")}>
+    <div className={classNames(styles.root, "product-card mt-3 mt-md-4")}>
       <Link href={`/product/${id}`} className={styles.image}>
         {(isNewlyAdded || isDiscounted) && (
           <div className={classNames("d-inline-flex gap-2 position-absolute left-0 top-0 z-2", styles.tags)}>
@@ -27,10 +27,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         )}
         <Image src={`/images/product/${imageUrl}`} width={600} height={600} alt={name} />
       </Link>
-      <div className={styles.info}>
+      <div className={classNames(styles.info, "product-info")}>
         <span className={styles.category}>{category}</span>
         <h4 className="mb-1">
-          <Link className={styles.title} href={`/product/${id}`}>
+          <Link className={classNames(styles.title, "product-title")} href={`/product/${id}`}>
             {name}
           </Link>
         </h4>
@@ -51,10 +51,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           )}
         </small>
         <div className="d-flex justify-content-between align-items-center mt-3">
-          <div className={styles.price}>
-            <span>${price}</span>
+          <div className={classNames(styles.price, "price")}>
+            <span className="selling-price">${price}</span>
             {isDiscounted && (
-              <span className="text-secondary text-decoration-line-through fw-normal fs-6 ms-2 opacity-75">
+              <span className="original-price text-secondary text-decoration-line-through fw-normal fs-6 ms-1 ms-sm-2 opacity-75">
                 ${originalPrice}
               </span>
             )}
