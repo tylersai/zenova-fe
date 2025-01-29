@@ -5,7 +5,7 @@ import { formatMoney } from "@/utils/helper";
 import Link from "next/link";
 import React from "react";
 
-const CheckoutSummary = () => {
+const CheckoutSummary = ({ handlePlaceOrder, isLoading }: { handlePlaceOrder: () => void; isLoading?: boolean }) => {
   const { items, totalPrice } = useAppSelector((state) => state.cart);
 
   const subTotal = items.reduce((cum, cur) => (cum += cur.originalPrice * cur.quantity), 0);
@@ -28,8 +28,14 @@ const CheckoutSummary = () => {
         <strong className="fw-medium">You pay</strong>
         <strong className="fw-medium">${formatMoney(totalPrice)}</strong>
       </div>
-      <button className="btn btn-primary btn-lg rounded mt-3">Pay Now</button>
-      <Link href="/cart" className="btn btn-light text-primary mt-3">
+      <button className="btn btn-primary btn-lg rounded mt-3" onClick={handlePlaceOrder} disabled={isLoading}>
+        Pay Now
+      </button>
+      <Link
+        href="/cart"
+        className="btn btn-light text-primary mt-3"
+        style={{ pointerEvents: isLoading ? "none" : "initial" }}
+      >
         Back to Cart
       </Link>
     </div>

@@ -2,17 +2,115 @@
 
 import styles from "./page.module.scss";
 import classNames from "classnames";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { redirect } from "next/navigation";
 import CheckoutBox from "@/components/CheckoutBox";
 import CheckoutSummary from "@/components/CheckoutSummary";
+import { useCallback, useState } from "react";
+import { CreateOrderPayload } from "@/types/order";
+import { ApiUrl } from "@/utils/constant";
+import { clearCart } from "@/redux/cartSlice";
+import { getFormValue } from "@/utils/helper";
 
 const CartPage = () => {
-  const { items } = useAppSelector((state) => state.cart);
+  const { items, totalPrice } = useAppSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
+  const [isLoading, setIsLoading] = useState(false);
 
   if (items.length === 0) {
     redirect("/");
   }
+
+  const prepareOrderPayload = useCallback((): CreateOrderPayload => {
+    const payload: CreateOrderPayload = {
+      cartItems: [],
+      subTotal: 0,
+      shippingFee: 0,
+      discount: 0,
+      totalPayment: 0,
+      name: "",
+      email: "",
+      address: {
+        line1: "",
+        line2: undefined,
+        city: "",
+        province: "",
+        country: "",
+        postalCode: "",
+      },
+      status: "unpaid",
+    };
+
+    // Cart
+    payload.cartItems = items.map((el) => ({
+      id: el.id,
+      category: el.category,
+      imageUrl: el.imageUrl,
+      name: el.name,
+      originalPrice: el.originalPrice,
+      price: el.price,
+      quantity: el.quantity,
+      rating: el.rating,
+      stock: el.stock,
+    }));
+    const subTotal = items.reduce((cum, cur) => (cum += cur.originalPrice * cur.quantity), 0);
+    const discount = subTotal - totalPrice;
+    payload.subTotal = subTotal;
+    payload.shippingFee = 0;
+    payload.discount = discount;
+    payload.totalPayment = totalPrice;
+
+    // Personal
+    payload.name = getFormValue("name");
+    payload.email = getFormValue("email");
+
+    // Address
+    payload.address = {
+      line1: getFormValue("address1"),
+      line2: getFormValue("address2"),
+      city: getFormValue("city"),
+      province: getFormValue("province"),
+      postalCode: getFormValue("postalCode"),
+      country: getFormValue("country"),
+    };
+
+    // Payment
+    payload.paymentMethod = "card";
+    payload.status = "paid";
+
+    return payload;
+  }, [items, totalPrice]);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const processPlaceOrder = useCallback(async (payload: CreateOrderPayload): Promise<any> => {
+    const resp = await fetch(`${ApiUrl.ORDER}`, {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!resp.ok) {
+      console.error(await resp.json());
+      return false;
+    }
+    return await resp.json();
+  }, []);
+
+  const handlePlaceOrder = async () => {
+    setIsLoading(true);
+    const payload = prepareOrderPayload();
+    const createdOrder = await processPlaceOrder(payload);
+    setIsLoading(false);
+    if (createdOrder) {
+      console.log(createdOrder);
+      alert("Successfully placed order");
+      dispatch(clearCart());
+      redirect("/");
+    } else {
+      alert("Fail to place order. Please try again.");
+    }
+  };
 
   return (
     <div className={classNames(styles.root, "py-3 py-md-4 py-lg-5")}>
@@ -115,7 +213,7 @@ const CartPage = () => {
                   <label htmlFor="cvc" className="form-label">
                     CVC/CVV
                   </label>
-                  <input type="text" className="form-control" id="cvc" placeholder="***" required />
+                  <input type="password" className="form-control" id="cvc" placeholder="***" required min={3} max={3} />
                 </div>
                 <div className="col-12 col-md-6" style={{ marginBottom: "1.25rem" }}>
                   <div className="form-check mt-1">
@@ -129,7 +227,7 @@ const CartPage = () => {
             </CheckoutBox>
           </div>
           <div className="col-12 col-md-5 col-lg-4 mb-3 mb-md-4">
-            <CheckoutSummary />
+            <CheckoutSummary handlePlaceOrder={handlePlaceOrder} isLoading={isLoading} />
           </div>
         </div>
       </div>
