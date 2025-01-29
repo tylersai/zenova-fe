@@ -5,6 +5,7 @@ import classNames from "classnames";
 import CartIcon from "./CartIcon";
 import WishlistIcon from "./WishlistIcon";
 import Image from "next/image";
+import AuthMenu from "./AuthMenu";
 
 const Header: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const Header: React.FC = () => {
             <Image src="/logo.svg" width={120} height={40} alt="Zenova" />
           </Link>
           <div className="d-inline-flex align-items-center justify-content-end gap-2 gap-md-3">
+            <AuthMenu />
             <WishlistIcon />
             <CartIcon />
           </div>
