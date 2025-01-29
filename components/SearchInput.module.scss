@@ -1,11 +1,4 @@
 .root {
-  border-bottom: 1px solid #eee;
-  nav {
-    height: 70px;
-  }
-}
-
-.search {
   width: 33vw;
   background-color: #f0f5fa;
   overflow: hidden;
@@ -15,5 +8,11 @@
   & > button {
     border: none;
     background-color: transparent !important;
+  }
+
+  @media (max-width: 767.98px) {
+    display: none;
+    visibility: hidden;
+    pointer-events: none;
   }
 }

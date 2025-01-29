@@ -21,8 +21,8 @@ const ProductPage = async ({ searchParams }: { searchParams: Promise<Record<stri
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <p className="mb-1">
-                Showing search results for <strong className="fw-medium">&quot;{q.trim()}&quot;</strong>
+              <p className={products.length > 0 ? "mb-1" : "mb-3"}>
+                Showing search results for <strong className="fw-medium text-primary">&quot;{q.trim()}&quot;</strong>
               </p>
             </div>
           </div>
