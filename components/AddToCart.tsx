@@ -17,6 +17,7 @@ const AddToCart: React.FC<AddToCartProps> = ({ className, product, quantity = 1 
 
   const handleAddToCart = () => {
     dispatch(addToCart({ ...product, quantity }));
+    alert("Added to cart");
   };
 
   return (

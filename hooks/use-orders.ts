@@ -3,10 +3,12 @@ import { getBearerToken } from "@/utils/helper";
 import { getMyOrders } from "@/repo/order";
 import { CreateOrderPayload } from "@/types/order";
 
+export type Order = CreateOrderPayload & { id: string; createdAt: Date };
+
 export const useMyOrders = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<null | unknown>(null);
-  const [data, setData] = useState<Array<CreateOrderPayload & { id: string }>>([]);
+  const [data, setData] = useState<Order[]>([]);
 
   const fetchData = async () => {
     setLoading(true);
@@ -15,7 +17,7 @@ export const useMyOrders = () => {
     if (res.statuCode && res.statuCode !== 200) {
       setError(res);
     } else {
-      setData(res as Array<CreateOrderPayload & { id: string }>);
+      setData(res as Order[]);
     }
   };
 

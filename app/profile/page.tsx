@@ -7,13 +7,17 @@ import Empty from "@/components/Empty";
 import Link from "next/link";
 import { ACCESS_TOKEN_KEY } from "@/utils/constant";
 import { useRouter } from "next/navigation";
+import { useAppDispatch } from "@/redux/hooks";
+import { clearCart } from "@/redux/cartSlice";
 
 const ProfilePage = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const { data: profile, fetchData } = useProfile();
 
   const handleLogout = () => {
     localStorage.removeItem(ACCESS_TOKEN_KEY);
+    dispatch(clearCart());
     fetchData();
     router.push("/");
   };

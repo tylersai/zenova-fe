@@ -14,7 +14,9 @@ const CartPage = () => {
   const dispatch = useAppDispatch();
 
   const handleRemoveItem = (id: string) => {
-    dispatch(removeFromCart(id));
+    if (confirm("Are you sure you want to remove this item from cart")) {
+      dispatch(removeFromCart(id));
+    }
   };
 
   return (

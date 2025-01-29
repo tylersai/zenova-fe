@@ -4,10 +4,10 @@ import styles from "./page.module.scss";
 import classNames from "classnames";
 import Link from "next/link";
 import { useActionState } from "react";
-import { loginAction } from "@/actions/login";
+import { signupAction } from "@/actions/signup";
 
 const CartPage = () => {
-  const [state, action, pending] = useActionState(loginAction, undefined);
+  const [state, action, pending] = useActionState(signupAction, undefined);
 
   return (
     <div className={classNames(styles.root, "py-3 py-md-4 py-lg-5")}>
@@ -15,12 +15,18 @@ const CartPage = () => {
         <div className="row justify-content-center">
           <div className="col-12 col-md-6 col-lg-4">
             <form className="box p-4" action={action}>
-              <h3 className="text-center mb-4">Login</h3>
+              <h3 className="text-center mb-4">Register</h3>
               {state?.errorMessage && (
                 <div id="error" className="alert alert-danger mb-3">
                   <i className="bi bi-exclamation-triangle"></i> {state.errorMessage}
                 </div>
               )}
+              <div className="mb-3">
+                <label htmlFor="name" className="form-label">
+                  Full Name
+                </label>
+                <input type="text" className="form-control" id="name" name="name" required />
+              </div>
               <div className="mb-3">
                 <label htmlFor="email" className="form-label">
                   Email
@@ -35,10 +41,10 @@ const CartPage = () => {
               </div>
               <div className="d-flex align-items-center justify-content-between mt-4 mb-2">
                 <small className="d-block text-secondary">
-                  Don&apos;t have an account? <Link href="/signup">Signup</Link>
+                  Already have an account? <Link href="/login">Login</Link>
                 </small>
                 <button type="submit" className="btn btn-primary" disabled={pending}>
-                  Login
+                  Signup
                 </button>
               </div>
             </form>

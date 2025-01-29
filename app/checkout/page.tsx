@@ -11,8 +11,10 @@ import { CreateOrderPayload } from "@/types/order";
 import { ApiUrl } from "@/utils/constant";
 import { clearCart } from "@/redux/cartSlice";
 import { getFormValue } from "@/utils/helper";
+import { useProfile } from "@/hooks/use-profile";
 
 const CartPage = () => {
+  const { data: profile } = useProfile();
   const { items, totalPrice } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(false);
@@ -118,18 +120,39 @@ const CartPage = () => {
         <div className="row">
           <div className="col-12 col-md-7 col-lg-8 mb-3 mb-md-4">
             <CheckoutBox title="Personal Details" className="mb-4">
+              {profile && (
+                <p className="text-secondary">
+                  You&apos;re logged in with <strong className="fw-medium">{profile.email}</strong>
+                </p>
+              )}
               <div className="row">
                 <div className="col-12 col-md-6 mb-3">
                   <label htmlFor="name" className="form-label">
                     Name
                   </label>
-                  <input type="text" className="form-control" id="name" placeholder="John Doe" required />
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="name"
+                    placeholder="John Doe"
+                    required
+                    defaultValue={profile?.name || ""}
+                    disabled={Boolean(profile)}
+                  />
                 </div>
                 <div className="col-12 col-md-6 mb-3">
                   <label htmlFor="email" className="form-label">
                     Email
                   </label>
-                  <input type="email" className="form-control" id="email" placeholder="john@example.com" required />
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="email"
+                    placeholder="john@example.com"
+                    required
+                    defaultValue={profile?.email || ""}
+                    disabled={Boolean(profile)}
+                  />
                 </div>
               </div>
             </CheckoutBox>
