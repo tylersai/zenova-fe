@@ -55,9 +55,9 @@ const CartPage = () => {
       rating: el.rating,
       stock: el.stock,
     }));
-    const subTotal = items.reduce((cum, cur) => (cum += cur.originalPrice * cur.quantity), 0);
-    const discount = subTotal - totalPrice;
-    payload.subTotal = subTotal;
+    const totalUndiscounted = items.reduce((cum, cur) => (cum += cur.originalPrice * cur.quantity), 0);
+    const discount = totalUndiscounted - totalPrice;
+    payload.subTotal = totalUndiscounted;
     payload.shippingFee = 0;
     payload.discount = discount;
     payload.totalPayment = totalPrice;

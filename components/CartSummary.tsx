@@ -8,13 +8,13 @@ import React from "react";
 const CartSummary = () => {
   const { items, totalPrice } = useAppSelector((state) => state.cart);
 
-  const subTotal = items.reduce((cum, cur) => (cum += cur.originalPrice * cur.quantity), 0);
+  const totalUndiscounted = items.reduce((cum, cur) => (cum += cur.originalPrice * cur.quantity), 0);
 
   return (
     <div className="CartSummary box p-4 d-flex flex-column align-items-stretch">
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <span>Subtotal</span>
-        <span>${formatMoney(subTotal)}</span>
+        <span>Total</span>
+        <span>${formatMoney(totalUndiscounted)}</span>
       </div>
       <div className="d-flex justify-content-between align-items-center mb-3">
         <span>Shipping</span>
@@ -22,7 +22,7 @@ const CartSummary = () => {
       </div>
       <div className="d-flex justify-content-between align-items-center mb-3">
         <span>You save</span>
-        <span className="text-success">${formatMoney(subTotal - totalPrice)}</span>
+        <span className="text-success">${formatMoney(totalUndiscounted - totalPrice)}</span>
       </div>
       <div className="d-flex justify-content-between align-items-center mb-3">
         <strong className="fw-medium">You pay</strong>

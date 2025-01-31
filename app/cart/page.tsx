@@ -36,7 +36,7 @@ const CartPage = () => {
                       <p>Qty</p>
                     </div>
                     <div className="col-2">
-                      <p>Price</p>
+                      <p>Subtotal</p>
                     </div>
                     <div className="col-2 col-lg-1"></div>
                   </div>
