@@ -21,11 +21,14 @@ import { getBearerToken } from "@/utils/helper";
 //   return result;
 // };
 
-export const getProfile = async () => {
+export const getProfile = async (accessToken?: string) => {
   const url = `${ApiUrl.PROFILE}`;
   const resp = await fetch(url, {
     method: "GET",
-    headers: { "Content-Type": "application/json", Authorization: getBearerToken() },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: accessToken ? `Bearer ${accessToken}` : getBearerToken(),
+    },
   });
   const result = await resp.json();
   return result;

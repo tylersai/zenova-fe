@@ -1,14 +1,15 @@
 "use client";
 
 import React from "react";
-import { useProfile } from "@/hooks/use-profile";
 import Link from "next/link";
 import HeaderIcon from "./HeaderIcon";
+import { useAppSelector } from "@/redux/hooks";
+import { isLoggedInSelector } from "@/redux/authSlice";
 
 const AuthMenu: React.FC = () => {
-  const { data: profile } = useProfile();
+  const isLoggedIn = useAppSelector(isLoggedInSelector);
 
-  if (!profile) {
+  if (!isLoggedIn) {
     return (
       <Link href="/login" className="me-1 link-dark" style={{ textUnderlineOffset: "3px" }}>
         Login

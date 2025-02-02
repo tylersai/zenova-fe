@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useActionState } from "react";
 import { signupAction } from "@/actions/signup";
 
-const CartPage = () => {
+const SignupPage = () => {
   const [state, action, pending] = useActionState(signupAction, undefined);
 
   return (
@@ -55,4 +55,4 @@ const CartPage = () => {
   );
 };
 
-export default CartPage;
+export default SignupPage;

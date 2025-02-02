@@ -2,24 +2,26 @@
 
 import styles from "./page.module.scss";
 import classNames from "classnames";
-import { useProfile } from "@/hooks/use-profile";
 import Empty from "@/components/Empty";
 import Link from "next/link";
-import { ACCESS_TOKEN_KEY } from "@/utils/constant";
 import { useRouter } from "next/navigation";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { clearCart } from "@/redux/cartSlice";
+import { setAccessToken, setUserProfile } from "@/redux/authSlice";
 
 const ProfilePage = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { data: profile, fetchData } = useProfile();
+  const profile = useAppSelector((state) => state.auth.user);
 
-  const handleLogout = () => {
-    localStorage.removeItem(ACCESS_TOKEN_KEY);
-    dispatch(clearCart());
-    fetchData();
-    router.push("/");
+  const handleLogout = async () => {
+    if (confirm("Are you sure you want to logout?")) {
+      dispatch(clearCart());
+      await fetch("/api/auth/logout", { method: "POST" });
+      dispatch(setAccessToken(undefined));
+      dispatch(setUserProfile(null));
+      router.push("/");
+    }
   };
 
   return (

@@ -4,7 +4,7 @@ import { Product } from "@/types/product";
 import { notFound } from "next/navigation";
 import ProductList from "@/components/ProductList";
 
-const ProductPage = async ({ params }: { params: Promise<{ category: string }> }) => {
+const CategoryPage = async ({ params }: { params: Promise<{ category: string }> }) => {
   const { category } = await params;
   if (!category) {
     return notFound();
@@ -37,4 +37,4 @@ const ProductPage = async ({ params }: { params: Promise<{ category: string }> }
   );
 };
 
-export default ProductPage;
+export default CategoryPage;

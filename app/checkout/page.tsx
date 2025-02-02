@@ -11,10 +11,9 @@ import { CreateOrderPayload } from "@/types/order";
 import { ApiUrl } from "@/utils/constant";
 import { clearCart } from "@/redux/cartSlice";
 import { getFormValue } from "@/utils/helper";
-import { useProfile } from "@/hooks/use-profile";
 
-const CartPage = () => {
-  const { data: profile } = useProfile();
+const CheckoutPage = () => {
+  const profile = useAppSelector((state) => state.auth.user);
   const { items, totalPrice } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(false);
@@ -258,4 +257,4 @@ const CartPage = () => {
   );
 };
 
-export default CartPage;
+export default CheckoutPage;
