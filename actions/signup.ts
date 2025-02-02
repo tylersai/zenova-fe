@@ -1,11 +1,14 @@
-// "use server";
+"use server";
 
 import { ACCESS_TOKEN_KEY, ApiUrl } from "@/utils/constant";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export type FormState = { errorMessage: string } | undefined;
 
 export const signupAction = async (state: FormState, data: FormData) => {
+  const cookieStore = await cookies();
+
   const name = data.get("name");
   const email = data.get("email");
   const password = data.get("password");
@@ -22,7 +25,7 @@ export const signupAction = async (state: FormState, data: FormData) => {
     return { errorMessage: typeof message === "string" ? message : message[0] };
   } else {
     const { access_token } = await resp.json();
-    localStorage.setItem(ACCESS_TOKEN_KEY, access_token);
+    cookieStore.set(ACCESS_TOKEN_KEY, access_token);
     redirect("/");
   }
 };

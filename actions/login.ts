@@ -27,7 +27,6 @@ export const loginAction = async (state: FormState, data: FormData) => {
     return { errorMessage: typeof message === "string" ? message : message[0] };
   } else {
     const { access_token } = await resp.json();
-    // localStorage.setItem(ACCESS_TOKEN_KEY, access_token);
     cookieStore.set(ACCESS_TOKEN_KEY, access_token);
     redirect("/");
   }
