@@ -27,14 +27,16 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const cookieStore = await cookies();
-  const accessToken = cookieStore.get(ACCESS_TOKEN_KEY)?.value;
+  let accessToken = cookieStore.get(ACCESS_TOKEN_KEY)?.value;
 
   let user = null;
   if (accessToken) {
     const res = await getProfile(accessToken);
-    const { statuCode, name, email } = res;
-    if (!(statuCode && statuCode !== 200)) {
+    const { status, name, email } = res;
+    if (!(status && status !== 200)) {
       user = { name, email };
+    } else {
+      accessToken = undefined;
     }
   }
 
