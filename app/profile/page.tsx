@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { clearCart } from "@/redux/cartSlice";
-import { setAccessToken, setUserProfile } from "@/redux/authSlice";
+import { logoutAction } from "@/actions/auth";
 
 const ProfilePage = () => {
   const router = useRouter();
@@ -17,9 +17,7 @@ const ProfilePage = () => {
   const handleLogout = async () => {
     if (confirm("Are you sure you want to logout?")) {
       dispatch(clearCart());
-      await fetch("/api/auth/logout", { method: "POST" });
-      dispatch(setAccessToken(undefined));
-      dispatch(setUserProfile(null));
+      await logoutAction();
       router.push("/");
     }
   };

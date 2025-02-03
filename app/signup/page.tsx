@@ -4,7 +4,7 @@ import styles from "./page.module.scss";
 import classNames from "classnames";
 import Link from "next/link";
 import { useActionState } from "react";
-import { signupAction } from "@/actions/signup";
+import { signupAction } from "@/actions/auth";
 
 const SignupPage = () => {
   const [state, action, pending] = useActionState(signupAction, undefined);

@@ -4,7 +4,7 @@ import styles from "./page.module.scss";
 import classNames from "classnames";
 import Link from "next/link";
 import { useActionState } from "react";
-import { loginAction } from "@/actions/login";
+import { loginAction } from "@/actions/auth";
 
 const LoginPage = () => {
   const [state, action, pending] = useActionState(loginAction, undefined);
